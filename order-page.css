@@ -1,0 +1,366 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0.313rem 0.413rem rgba(0,0,0,0.2);
+  transition: top 0.3s;
+  z-index: 1000;
+}
+
+.nav-menu {
+  display: flex;
+  flex-wrap: wrap; /* ✅ allows wrapping on smaller screens */
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 1rem;
+  gap: 1rem; /* ✅ gap between items */
+  font-size: clamp(0.8rem, 2vw, 1rem); /* ✅ responsive font size */
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.nav-menu li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+}
+
+.nav-menu li a {
+  color: rgb(0, 0, 0);
+  padding: 0 15px;
+  text-decoration: none;
+  transition: opacity 0.3s ease-in-out;  /* Smooth fade */
+
+}
+
+.nav-menu li a:hover {
+  opacity:0.5;
+}
+
+main {
+  padding-top: 50px; /* pushes content below fixed nav */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.image-gallery {
+  position: relative; /* ✅ So the button can be placed inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  
+}
+
+.image-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ✅ Looks cleaner on all screens */
+  opacity: 0.7;
+}
+
+
+
+.order-description-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center horizontally and vertically */
+  text-align: center;
+  color: black; /* or white depending on your image */
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Optional: fine-tuning text styles */
+.order-description-overlay h2 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+font-family: 'Georgia', serif;
+
+}
+
+.order-description-overlay p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-style:italic;
+}
+.image-overlay {
+  position: relative;
+  
+}
+
+.image-overlay img {
+  width: 100%;
+  height: 20rem;
+  opacity: 0.8;
+
+}
+
+.text-overlay {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 60%; /* Desktop: takes 40% width */
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  color:rgb(255, 255, 255);
+  gap: 1rem; /* adds spacing between flex items */
+  min-width: 250px; /* ensures it doesn’t get too narrow */
+}
+
+.text-overlay h3 {
+  font-weight: bold;
+  font-size: 2rem;
+
+}
+
+.hours, .contact {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Modifier class to reverse the order */
+.bagel-section.reverse {
+  flex-direction: row-reverse;
+  background-color: #ffffff;
+}
+.bagel-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80vh;
+  background-color: #f2f2f2;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.image-container,
+.text-container {
+  flex: 1 1 45%;
+  max-width: 40rem;
+}
+
+.image-container img.circular-image {
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* your circle */
+  object-fit: cover;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  
+}
+
+.order-button-section {
+  align-self: flex-end;
+  background-color: #f82500;
+  color: white;
+  padding: 1rem 1.95rem;
+  border: none;
+  border-radius: 0.6rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-right:15rem;
+}
+
+.order-button-section:hover {
+  background-color: #be1b06;
+}
+
+
+.about-us-bagel{
+  width:30rem;
+  height:30rem;
+  margin-top:1rem;
+  margin-bottom:1rem;
+  margin-left: 6rem;
+}
+
+/* 📱 Mobile / iPhone responsive styles */
+@media (max-width: 768px) {
+
+  /* ⛵️ Navigation: Stack vertically */
+
+  .nav-menu li a {
+    padding: 0.5rem;
+  }
+
+  /* 🍩 Bagel Section (image and text) */
+  .bagel-section,
+  .bagel-section.reverse {
+    flex-direction: column !important;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .image-container,
+  .text-container {
+    max-width: 100%;
+    flex: 1 1 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .image-container img.circular-image {
+    width: 70vw;
+    height: auto;
+  }
+
+  .text-container {
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  .order-button-section {
+    margin-right: 0;
+    align-self: center;
+    width: 40%;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  /* 🖼️ Image Gallery */
+  .image-gallery {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .image-gallery img {
+    height: auto;
+  }
+
+  .order-description {
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+    max-width: 90%;
+  }
+
+  .order-button {
+    top: auto;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* 🧃 Menu Boxes */
+  .menu-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two columns */
+    gap: 1rem;
+    justify-items: center; /* center single item in last row */
+  }
+  .menu-item {
+    width: 90%; /* ✅ Takes up less width */
+    max-width: 15rem; /* ✅ Caps the width so it doesn’t get too big */
+    height: auto; /* ✅ Adjust height automatically */
+  }
+  .menu-item img {
+    height: 12rem;
+  }
+
+    .menu-item:nth-child(3) {
+    grid-column: 1 / span 2; /* spans both columns */
+    justify-self: center;
+  }
+
+  .item-info h3 {
+    font-size: 1.2rem;
+  }
+
+  /* 🕰️ Footer / Overlay Info */
+  .image-overlay img {
+    height: auto;
+  }
+
+  .text-overlay {
+    right: 0; /* Full width */
+    justify-content: center; /* Center content */
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  /* Optional: make flex items take half width so you get a grid-like layout */
+  .text-overlay > div {
+    flex: 1 1 45%; /* Each item takes ~45% width */
+    min-width: 120px;
+  }
+
+  .hours,
+  .contact {
+    flex: 1 1 45%;
+  }
+
+  .location {
+    flex: 1 1 100%;
+  }
+
+  .text-overlay h3 {
+    font-size: 1.25rem;
+  }
+
+  .order-description-overlay h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+}
+  .order-description-overlay p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+font-family: 'Verdana', sans-serif;
+}
+
+
+.about-us-bagel{
+  margin-top:5rem;
+  width:20rem;
+  height:20rem;
+  margin-left:0rem;
+
+}
+  
+}
