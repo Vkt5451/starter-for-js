@@ -1,0 +1,579 @@
+/* Prevent horizontal scroll on body */
+@media (max-width: 1024px) {
+    .menu-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+#modal {
+    display: none;
+}
+
+html,
+body {
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f7f7;
+    padding: 20px;
+}
+
+#header,
+.search-bar-row {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: white;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    will-change: transform;
+    padding-bottom: 0rem;
+}
+
+/* Position them at the top, stacked */
+#header {
+    top: 0rem;
+    height: 3.438rem;
+    /* example height */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    transform: translateY(0);
+}
+
+.nav-bar {
+    background: white;
+    height: 3.75rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0;
+    gap: 3.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.nav-menu li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+    transition: opacity 0.3s;
+}
+
+.nav-menu li a:hover {
+    opacity: 0.6;
+}
+
+.address{
+    font-size:1rem;
+}
+.search-bar-row {
+    position: sticky;
+    top: 3.75rem;
+    /* 60px = 3.75rem */
+    background: white;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+    /* 2px 5px */
+    height: 4.375rem;
+    /* 70px = 4.375rem */
+}
+
+.search-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+    /* 800px = 50rem */
+    border-top: 0.25rem solid black;
+    /* 4px = 0.25rem */
+    border-bottom: 0.25rem solid black;
+    padding: 0 1rem;
+}
+
+
+.food-categories {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    /* Remove scrollbar-width:none; */
+}
+
+.food-categories button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    border: none;
+    background-color: #eee;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+#scroll-left,
+#scroll-right {
+    background: white;
+    border: 1px solid #ffffff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#scroll-left {
+    margin-right: 0.5rem;
+}
+
+#scroll-right {
+    margin-left: 0.5rem;
+}
+
+main {
+    padding-top: 6rem;
+    /* pushes content below fixed nav */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+/* Style the logo image */
+/* Logo */
+.logo-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 5rem;
+}
+
+.logo-img {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+    margin-right: 18rem;
+
+}
+
+/* Image gallery */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+    width: 99vw;
+    /* fixed to 100vw */
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+
+}
+
+.image-gallery img {
+    width: 100vw;
+    height: 60vh;
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+    margin-left:0rem;
+}
+
+/* Container that holds all the menu items */
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.5rem;
+    max-width: 75rem;
+    /* prevents stretching too wide */
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    justify-items: center;
+
+}
+
+
+/* Each menu item box */
+.menu-item {
+    height: 100%;
+    width: 100%;
+    /* fill grid column */
+    aspect-ratio: 1 / 1;
+    /* maintain square */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
+}
+
+.menu-item:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+}
+
+.item-info {
+    padding: 10px;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Modal styles */
+.modal {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(92, 89, 79, 0.445);
+    font-size: 1rem;
+
+    /* Flexbox for vertical + horizontal centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    width: 80%;
+    max-width: 600px;
+    max-height: 90vh;
+    /* prevents overflowing screen height */
+    overflow-y: auto;
+    /* scroll if content too tall */
+    text-align: center;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+    /* Makes the scrollbar thinner */
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Track background */
+    border-radius: 10px;
+    border-top: 2rem solid transparent;
+    /* space at top */
+    border-bottom: 2rem solid transparent;
+    /* space at bottom */
+
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #aaa6a6;
+    /* Scrollbar color */
+    border-radius: 10px;
+    min-height: 40px;
+    /* makes thumb not too small */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+    /* On hover */
+}
+
+
+.close-button {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    font-size: 3rem;
+    background-color: white;
+    border-radius: 20px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.menu-group {
+    width: 100%;
+    margin-bottom: 3rem;
+    background: rgb(240, 240, 240);
+}
+
+.menu-group-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-left: 2rem;
+    color: #000000;
+    font-weight: bold;
+    margin-left: 4rem;
+}
+
+#modal-addons {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.addon-category-title {
+    display: block;
+    width: 100%;
+    /* take full container width */
+    margin-top: .5 rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.25rem;
+    box-sizing: border-box;
+    /* includes padding & border in width */
+}
+
+.addon-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.addon-item input[type="checkbox"],
+.addon-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    outline-offset: 2px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.addon-item input[type="checkbox"]:checked,
+.addon-item input[type="radio"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.addon-item input[type="checkbox"]:checked::after,
+.addon-item input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.nav-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #f8f7f7;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+}
+
+.nav-button:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+/* === Mobile Viewport Enhancements === */
+@media (max-width: 768px) {
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    html,
+    body {
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .nav-menu {
+        font-size: 1rem;
+        gap: 1.5rem;
+        padding: 0.25rem;
+    }
+
+    .nav-bar {
+        height: 3rem;
+    }
+
+    #header {
+        height: 3rem;
+    }
+
+    .search-bar-row {
+        height: 3.5rem;
+        top: 3rem;
+    }
+
+    .search-bar-inner {
+        padding: 0 0.5rem;
+        border-width: 2px;
+    }
+
+    .logo-img {
+        height: 2rem;
+        margin-right: 1rem;
+    }
+
+    .image-gallery img {
+        height: 40vh;
+    }
+
+    .menu-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .menu-group-title {
+        font-size: 2.5rem;
+        margin-left: 0;
+        padding-left: 1rem;
+
+    }
+
+    .menu-item {
+        aspect-ratio: 1 / 1;
+        margin-right: 2rem;
+        width: 90%;
+        height: 90%;
+    }
+
+    .item-info h3 {
+        font-size: 1rem;
+    }
+
+    .item-info p {
+        font-size: 0.9rem;
+    }
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Aligns modal content toward the top */
+        padding-top: 10vh; /* Space from top; adjust as needed */
+    }
+
+    .modal-content {
+        margin-top: 0; /* Remove any default margins */
+        transform: none; /* Remove centering transform */
+    }
+
+    .close-button {
+        font-size: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        left: 10px;
+        top: 10px;
+    }
+
+    .addon-category-title {
+        font-size: 1rem;
+    }
+
+    .addon-item {
+        font-size: 0.9rem;
+    }
+
+    .addon-item input[type="checkbox"],
+    .addon-item input[type="radio"] {
+        width: 0.9rem;
+        height: 0.9rem;
+    }
+
+    #scroll-left,
+    #scroll-right {
+        font-size: 0.9rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .food-categories {
+        gap: 0.25rem;
+        padding: 0.25rem 0;
+    }
+
+    .food-categories button {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}

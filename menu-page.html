@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Street Bagel Cafe Website</title>
+
+    <link rel="stylesheet" href="menu-page.css" />
+    </head>
+    
+    <body>
+
+        <header id="header">
+        <nav class="nav-bar">
+
+                <ul class="nav-menu">
+                <li>
+                    <a href="order-page.html" class="logo-link">
+                    <img src="images/bagel_drawing.jpg" alt="bagel drawing" class="logo-img">
+                    </a>
+                </li>
+                    <li class="address">
+                    1580 W El Camino Ave, Sacramento, CA 95833
+                    </li>
+                </ul>
+        </nav>
+
+        <div class="search-bar-row">
+            <div class="search-bar-inner">
+            <button id="scroll-left" class="scroll-btn">&lt;</button>
+                <div class="food-categories">
+                    <a href="#Most-Popular" class="nav-button">Most Popular</a>
+                    <a href="#Sandwiches" class="nav-button">Sandwiches</a>                  
+                    <a href="#Bagels" class="nav-button">Bagels</a>  
+                    <a href="#Savory-Snacks" class="nav-button">Savory Snacks</a> 
+                    <a href="#Sweets" class="nav-button">Sweets</a> 
+                    <a href="#Smoothies" class="nav-button">Drinks</a> 
+                    <a href="#Others" class="nav-button">Others</a>  
+                        
+                </div>
+            <button id="scroll-right" class="scroll-btn">&gt;</button>
+            </div>
+        </div>
+
+    </header>
+
+
+    <main>
+        <div class="image-gallery">
+            <img src="images/bagel1.jpg" alt="Bagel 3">
+        </div>
+
+
+
+        <!-- Existing menu container -->
+
+
+        <!-- 🔽 Add this modal HTML below the menu container -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="modal-title"></h2>
+                <img id="modal-image" src="" alt="">
+                <p id="modal-description"></p>
+                <div id="modal-addons" class="modal-addons"></div>
+                <!-- <button id="add-to-cart-btn" class = 'add-to-cart-btn'>Add to Cart</button>  ✅ Add this -->
+            </div>
+        </div>
+    </main>
+
+
+        <script src="menu-page.js"></script>
+    </body>
+
+
+    <script>
+    const header = document.getElementById('header');
+    const searchBar = document.querySelector('.search-bar-row');
+
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down
+    header.style.transform = 'translateY(-100%)';  // Hide nav up
+    searchBar.style.transform = 'translateY(0)';    // Show search bar
+  } else if (scrollTop < lastScrollTop - 5) {
+    // Scrolling up by 5px or more
+    header.style.transform = 'translateY(0)';      // Show nav
+   // searchBar.style.transform = 'translateY(-100%)'; // Hide search bar
+  }
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scroll
+});
+
+
+    const container = document.querySelector('.food-categories');
+    const btnLeft = document.getElementById('scroll-left');
+    const btnRight = document.getElementById('scroll-right');
+
+    btnLeft.addEventListener('click', () => {
+    container.scrollBy({ left: -150, behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+    container.scrollBy({ left: 150, behavior: 'smooth' });
+    });
+
+
+</script>
+</html>
